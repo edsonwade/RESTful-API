@@ -1,4 +1,13 @@
 ###
 GET http://localhost:3000/api/v1/movies/ HTTP/1.1
 ###
-GET http://localhost:3000/api/v1/movies/23 HTTP/1.1
+GET http://localhost:3000/api/v1/movies/626dbfc76e08ef7e68dd4aea HTTP/1.1
+
+###
+POST http://localhost:3000/api/v1/movies/
+Content-Type: application/json;
+
+{
+    "movieDirector":"Vanilson Wayne",
+    "movieTitle":"The Begin of the worlds"
+}
