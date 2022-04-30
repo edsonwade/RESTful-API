@@ -4,6 +4,9 @@ const arr = require("./arrays.js");
 const PORT = process.env.PORT || 3000;
 
 const app = express();
+
+app.use(express.json());
+
 const lessons = [
   { id: 1, lesson: "lesson 1" },
   { id: 2, lesson: "lesson 2" },
@@ -50,6 +53,14 @@ app.get("/api/v1/lesson/:year/:title", (req, res) => {
 /** query string params with question mark ? */
 app.get("/api/v1/lesson/:year/:title", (req, res) => {
   res.send(req.query);
+});
+
+app.post("/api/v1/lessons", (req, res) => {
+  const lesson = {
+    id: lessons.length + 1,
+    lesson: req.body.lesson,
+  };
+  res.send(lesson);
 });
 
 app.listen(PORT, () => {

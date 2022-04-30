@@ -13,3 +13,13 @@ GET http://localhost:3000/api/v1/lesson/2019/batman?sortBy=name HTTP/1.1
 
 ###
 GET http://localhost:3000/api/v1/lesson HTTP/1.1
+
+
+###
+POST http://localhost:3000/api/v1/lessons HTTP/1.1
+Content-Type: application/json;
+
+{
+
+    "lesson":"new lesson"
+}
