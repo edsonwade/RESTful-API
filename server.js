@@ -1,5 +1,6 @@
 const express = require("express");
 const PORT = process.env.PORT || 3000;
+const validate = require("./validate.js");
 
 const app = express();
 
@@ -13,7 +14,6 @@ const lessons = [
 
 //GET ROUTE
 app.get("/api/v1/lesson", (req, res) => res.send(lessons));
-
 
 //GET ROUTE
 app.get("/api/v1/lesson/:id", (req, res) => {
@@ -33,12 +33,7 @@ app.post("/api/v1/lesson", (req, res) => {
 
 //POST ROUTE WITH INPUT VALIDATION
 app.post("/api/v1/lesson", (req, res) => {
-  if (!req.body.lesson || req.body.lesson.length < 3) {
-    res
-      .status(400)
-      .send("Lesson required and should be at least 3 characters long");
-    return;
-  }
+  validate(req, res);
   const lesson = {
     id: lessons.length + 1,
     lesson: req.body.lesson,
@@ -51,13 +46,7 @@ app.post("/api/v1/lesson", (req, res) => {
 app.put("/api/v1/lesson/:id", (req, res) => {
   const lesson = lessons.find((l) => l.id === parseInt(req.params.id));
   if (!lesson) res.status(404).send("The lesson ID given was not found");
-  res.send(lesson);
-  if (!req.body.lesson || req.body.lesson.length < 3) {
-    res
-      .status(400)
-      .send("Lesson required and should be at least 3 characters long");
-    return;
-  }
+  validate(req, res);
   lesson.lesson = req.body.lesson;
   res.send(lesson);
 });
