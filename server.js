@@ -98,6 +98,21 @@ app.put("/api/v1/lesson/:id", (req, res) => {
   res.send(lesson);
 });
 
+/**
+ * delete methods
+ */
+app.delete("/api/v1/lesson/:id", (req, res) => {
+  const lesson = lessons.find((l) => l.id === parseInt(req.params.id));
+  if (!lesson) {
+    res.status(404).send("The lesson ID given was not found");
+  }
+  //delete id
+  const index = lessons.indexOf(lesson);
+  lessons.splice(index, 1);
+  //return to the client
+  res.send(lesson);
+});
+
 app.listen(PORT, () => {
   console.log(`Running on port ${PORT}`);
 });
