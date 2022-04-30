@@ -32,3 +32,8 @@ Content-Type: application/json;
 
     "lesson":"lesson 5"
 }
+
+###
+DELETE  http://localhost:3000/api/v1/lesson/1 HTTP/1.1
+
+
