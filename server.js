@@ -55,11 +55,27 @@ app.get("/api/v1/lesson/:year/:title", (req, res) => {
   res.send(req.query);
 });
 
+/* create a post route */
 app.post("/api/v1/lessons", (req, res) => {
   const lesson = {
     id: lessons.length + 1,
     lesson: req.body.lesson,
   };
+  res.send(lesson);
+}); 
+
+/** Input validation. never trust data that come for the clients */
+app.post("/api/v1/lesson", (req, res) => {
+  if (!req.body.lesson || req.body.lesson.length < 3) {
+    return res
+      .status(400)
+      .send("Lesson required and should be at least 3 characters long");
+  }
+  const lesson = {
+    id: lessons.length + 1,
+    lesson: req.body.lesson,
+  };
+
   res.send(lesson);
 });
 
