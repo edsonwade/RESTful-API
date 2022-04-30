@@ -12,7 +12,7 @@ const movieSchema = new mongoose.Schema({
   movieDate: {
     type: Date,
     required: true,
-    default: Date.UTC(2022, 04, 30),
+    default: Date.now(),
   },
 });
 
