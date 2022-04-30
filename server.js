@@ -62,7 +62,7 @@ app.post("/api/v1/lessons", (req, res) => {
     lesson: req.body.lesson,
   };
   res.send(lesson);
-}); 
+});
 
 /** Input validation. never trust data that come for the clients */
 app.post("/api/v1/lesson", (req, res) => {
@@ -76,6 +76,25 @@ app.post("/api/v1/lesson", (req, res) => {
     lesson: req.body.lesson,
   };
 
+  res.send(lesson);
+});
+
+/**
+ * Put
+ */
+
+app.put("/api/v1/lesson/:id", (req, res) => {
+  const lesson = lessons.find((l) => l.id === parseInt(req.params.id));
+  if (!lesson) {
+    res.status(404).send("The lesson ID given was not found");
+  }
+  res.send(lesson);
+  if (!req.body.lesson || req.body.lesson.length < 3) {
+    return res
+      .status(400)
+      .send("Lesson required and should be at least 3 characters long");
+  }
+  lesson.lesson = req.body.lesson;
   res.send(lesson);
 });
 
