@@ -1,0 +1,19 @@
+put methods
+// Look u existing lesson
+   // if  lesson  do not exist, return 404 error not found
+   const lesson = lessons.find((l) => l.id === parseInt(req.params.id));
+   if (!lesson) {
+     res.status(404).send("The lesson ID given was not found");
+   }
+   res.send(lesson);
+   // validate the input
+   // if inputs is invalid ,then return a 400 error -bad request
+   if (!req.body.lesson || req.body.lesson.length < 3) {
+    return res
+      .status(400)
+      .send("Lesson required and should be at least 3 characters long");
+  }
+    //update the specified lessons
+    //return the update lesson to the client, in the browser
+      lesson.lesson = req.body.lesson;
+     res.send(lesson)
