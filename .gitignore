@@ -1,5 +1,7 @@
 node_modules/
-*.server.js
-*.validate.js
-*.request-http/
-*.notes.txt
+# Ignore the files
+.validate.js
+.server.js
+.notes.txt
+# Ignore the request-http directory
+request-http/
