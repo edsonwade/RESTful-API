@@ -6,9 +6,12 @@ const mongoose = require("mongoose");
 const validate = require("./validate.js");
 const moviesRouter = require("./routes/movies.js");
 const app = express();
+const db = mongoose.connection;
+
+app.use(express.static('public'))
 
 mongoose.connect(DATABASE_URL, { useNewUrlParser: true });
-const db = mongoose.connection;
+
 
 db.on("error", (error) => console.error(error));
 db.once("open", () => console.log("Connected to Database"));
